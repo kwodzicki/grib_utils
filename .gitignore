@@ -2,3 +2,5 @@
 *.pyc
 __pycache__
 testing
+build
+*.egg-info

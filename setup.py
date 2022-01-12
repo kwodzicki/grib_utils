@@ -22,6 +22,7 @@ setup(
   version          = main_ns['__version__'],
   packages         = find_packages(),
   install_requires = [ "fastener" ],
-  scripts          = [ os.path.join( '.', 'bin', NAME ) ],
+  scripts          = [ os.path.join( '.', 'bin', 'grib_downloader' ),
+                       os.path.join( '.', 'bin', 'grib_subset' ) ],
   zip_safe         = False
 )
