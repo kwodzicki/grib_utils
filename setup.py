@@ -2,7 +2,7 @@
 import os
 from setuptools import convert_path, setup, find_packages
 
-NAME  = 'grib_downloader'
+NAME  = 'grib_utils'
 DESC  = 'Utitlity for downloading full, or parital, GRIB files'
 AUTH  = 'Kyle R. Wodzicki'
 EMAIL = 'krwodzicki@gmail.com'

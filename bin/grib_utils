@@ -5,9 +5,9 @@ if __name__ == "__main__":
   import logging
   import argparse
 
-  from grib_downloader import LOG, LIMITUNITS
-  from grib_downloader.download import GribDownloader
-  from grib_downloader.utils import subsetGrib
+  from grib_utils import LOG, LIMITUNITS
+  from grib_utils.download import GribDownloader
+  from grib_utils.utils import subsetGrib
 
   parser = argparse.ArgumentParser(description='GRIB data downloader')
   parser.add_argument('local',       type = str, help = 'Local file path to write downloaded data to')
