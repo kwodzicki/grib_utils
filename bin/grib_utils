@@ -7,11 +7,12 @@ if __name__ == "__main__":
 
   from grib_downloader import LOG, LIMITUNITS
   from grib_downloader.download import GribDownloader
+  from grib_downloader.utils import subsetGrib
 
   parser = argparse.ArgumentParser(description='GRIB data downloader')
-  parser.add_argument('url',         type = str, help = 'URL of the grib file to download')
   parser.add_argument('local',       type = str, help = 'Local file path to write downloaded data to')
-  parser.add_argument('patterns',    type =str, nargs='*', help = 'Used to filter the variables to be download. Any number of patterns to match to grib records in the idx file for downloading' )
+  parser.add_argument('patterns',    type = str, nargs='*', help = 'Used to filter the variables to be download. Any number of patterns to match to grib records in the idx file for downloading' )
+  parser.add_argument('--url',       type = str, help = 'URL of the grib file to download')
   parser.add_argument('--log-level', type =int, default=20, help = 'Set logging level')
   parser.add_argument('--clobber',       action='store_true', help = 'Set to overwrite (clobber) existing files')
   parser.add_argument('--no-idx',        action='store_true', help = 'Do NOT save the .idx file locally')
@@ -22,16 +23,19 @@ if __name__ == "__main__":
 
   args = parser.parse_args()
 
-  ratelimit = args.ratelimit.split('/')
-  ratelimit = [float(ratelimit[0]), LIMITUNITS.get( ratelimit[1].upper() )]
+  if args.url is not None:
+    ratelimit = args.ratelimit.split('/')
+    ratelimit = [float(ratelimit[0]), LIMITUNITS.get( ratelimit[1].upper() )]
 
-  stream = logging.StreamHandler()
-  stream.setLevel( args.log_level )
-  stream.setFormatter( logging.Formatter( '%(asctime)s [%(levelname)s] %(message)s' ) )
-  LOG.addHandler( stream )
+    stream = logging.StreamHandler()
+    stream.setLevel( args.log_level )
+    stream.setFormatter( logging.Formatter( '%(asctime)s [%(levelname)s] %(message)s' ) )
+    log.addHandler( stream )
 
-  downloader = GribDownloader( *ratelimit )
-  res = downloader.getGrib( args.url, args.local, *args.patterns, no_idx = args.no_idx, clobber = args.clobber)
+    downloader = GribDownloader( *ratelimit )
+    res = downloader.getGrib( args.url, args.local, *args.patterns, no_idx = args.no_idx, clobber = args.clobber )
 
-  exit( not res )
+    exit( not res )
+  else:
+    subsetGrib( args.local, *args.patterns, remove_idx = args.no_idx )
 
