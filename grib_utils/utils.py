@@ -1,5 +1,5 @@
 import logging
-
+import re
 from functools import partial
 
 class Partial( partial ):

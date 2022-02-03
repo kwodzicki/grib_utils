@@ -30,7 +30,7 @@ if __name__ == "__main__":
     stream = logging.StreamHandler()
     stream.setLevel( args.log_level )
     stream.setFormatter( logging.Formatter( '%(asctime)s [%(levelname)s] %(message)s' ) )
-    log.addHandler( stream )
+    LOG.addHandler( stream )
 
     downloader = GribDownloader( *ratelimit )
     res = downloader.getGrib( args.url, args.local, *args.patterns, no_idx = args.no_idx, clobber = args.clobber )
