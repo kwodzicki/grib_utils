@@ -21,7 +21,7 @@ setup(
   author_email     = EMAIL,
   version          = main_ns['__version__'],
   packages         = find_packages(),
-  install_requires = [ "fastener" ],
+  install_requires = [ "fasteners" ],
   scripts          = [ os.path.join( '.', 'bin', 'grib_utils' )],
   zip_safe         = False
 )

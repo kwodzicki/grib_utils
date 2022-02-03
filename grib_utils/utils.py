@@ -4,7 +4,7 @@ from functools import partial
 
 class Partial( partial ):
 
-  def __call__(self, /, *args, **keywords):
+  def __call__(self, *args, **keywords):
     keywords = {**self.keywords, **keywords}
     return self.func(*args, *self.args, **keywords)
 
